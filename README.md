@@ -59,40 +59,11 @@ The project demonstrates the complete troubleshooting lifecycle from **network c
 
 # 🏗️ Lab Architecture
 
-```text
-                         MICROSOFT AZURE
-                                |
-                                |
-                  rg-network-troubleshooting-lab
-                                |
-                                |
-                 vnet-network-troubleshooting
-                         10.10.0.0/16
-                                |
-                 +--------------+--------------+
-                 |                             |
-                 |                             |
-           Web-Subnet                     Admin-Subnet
-           10.10.1.0/24                  10.10.2.0/24
-                 |                             |
-                 |                             |
-                 v                             v
-          WEB-SERVER-01                    ADMIN-VM
-          Windows Server                  Windows Server
-                 |                             |
-                 |                             |
-                 v                             |
-                IIS <--------- TCP 80 ----------+
-                 |
-                 |
-        Network Security Group
-          nsg-web-server
-                 |
-                 |
-        Azure Network Watcher
-```
 
-### Architecture Diagram
+<img width="1536" height="1024" alt="Lab Architecture" src="https://github.com/user-attachments/assets/d183b07b-8c89-4c8a-b98a-cb4709166c7e" />
+
+
+### Network Architecture Diagram
 
 ![Azure Network Architecture](architecture/azure-network-architecture.png)
 

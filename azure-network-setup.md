@@ -42,9 +42,9 @@ A successful response confirmed that the IIS web server was functioning before n
 
 ### Evidence
 
-![IIS Installed](screenshots/09-iis-installed.png)
+<img width="1919" height="1018" alt="09-iis-installed png" src="https://github.com/user-attachments/assets/42ff730b-158b-408b-8410-58c30f5ffe38" />
 
-![IIS Local Test](screenshots/10-iis-local-test-success.png)
+<img width="1917" height="1021" alt="10-iis-local-test-success png" src="https://github.com/user-attachments/assets/04f72285-774d-4a9f-abd0-ef8cb6ec4497" />
 
 ---
 
@@ -90,7 +90,7 @@ IIS
 
 ### Evidence
 
-![Initial Connectivity Success](screenshots/16-initial-connectivity-success.png)
+<img width="1919" height="1021" alt="16-initial-connectivity-success png" src="https://github.com/user-attachments/assets/27e9717b-4dda-47ac-a075-08eeee7f252e" />
 
 ---
 
@@ -151,9 +151,9 @@ This successfully reproduced the simulated network incident.
 
 ### Evidence
 
-![HTTP Deny Rule Created](screenshots/19-nsg-http-deny-rule-created.png)
+<img width="1917" height="909" alt="19-nsg-http-deny-rule-created png" src="https://github.com/user-attachments/assets/1ef32844-1be6-416f-9a20-311cca3a2a82" />
 
-![Connectivity Failure](screenshots/20-connectivity-failure.png)
+<img width="1916" height="1017" alt="20-connectivity-failure png" src="https://github.com/user-attachments/assets/7ac54cd9-5782-4b92-bdca-f8236ae208bf" />
 
 ---
 
@@ -195,7 +195,7 @@ The virtual machine itself was not stopped or unavailable.
 
 ### Evidence
 
-![Web Server Health Check](screenshots/21-web-server-health-check.png)
+<img width="1912" height="907" alt="21-web-server-health-check png" src="https://github.com/user-attachments/assets/528271da-66af-4b8f-8194-966ce1ae1287" />
 
 ---
 
@@ -240,7 +240,7 @@ This confirmed that IIS was listening on TCP port `80`.
 
 ### Evidence
 
-![Local IIS Connectivity](screenshots/22-local-iis-connectivity-success.png)
+<img width="1919" height="1016" alt="22-local-iis-connectivity-success png" src="https://github.com/user-attachments/assets/1468c49c-f3ca-4992-82b4-b296d0d97894" />
 
 ---
 
@@ -304,7 +304,7 @@ The deny rule was blocking the HTTP traffic before the allow rule could take eff
 
 ### Evidence
 
-![NSG HTTP Deny Rule](screenshots/19-nsg-http-deny-rule-created.png)
+<img width="1917" height="909" alt="19-nsg-http-deny-rule-created png" src="https://github.com/user-attachments/assets/a7bc6fce-89e3-4f0c-9684-3f5585f81975" />
 
 ---
 
@@ -337,7 +337,7 @@ This provided evidence that the NSG configuration was actively blocking the conn
 
 ### Evidence
 
-![Effective Security Rules](screenshots/23-effective-security-rules-deny-http.png)
+<img width="1915" height="909" alt="23-effective-security-rules-deny-http png" src="https://github.com/user-attachments/assets/c707914e-64da-40a6-b0b6-2108c12884a0" />
 
 ---
 
@@ -367,7 +367,7 @@ This provided Azure-side confirmation that the network path was being blocked.
 
 ### Evidence
 
-![Network Watcher HTTP Failure](screenshots/24-network-watcher-http-failure.png)
+<img width="1919" height="910" alt="24-network-watcher-http-failure png" src="https://github.com/user-attachments/assets/b77dac9c-a98a-4740-85af-313780e1806e" />
 
 ---
 
@@ -465,7 +465,7 @@ After the incorrect rule was removed, the network configuration was tested again
 
 ### Evidence
 
-![Corrected NSG](screenshots/25-nsg-corrected.png)
+<img width="1917" height="908" alt="25-nsg-corrected png" src="https://github.com/user-attachments/assets/b87006ce-dad6-4951-88d1-de040febf9bc" />
 
 ---
 
@@ -532,7 +532,7 @@ This confirmed that TCP port `80` was reachable again.
 
 ### Evidence
 
-![Connectivity Restored](screenshots/26-connectivity-restored.png)
+<img width="1913" height="1013" alt="26-connectivity-restored png" src="https://github.com/user-attachments/assets/71a2011c-d02d-49d5-88e1-a484be4f95e2" />
 
 ---
 
@@ -550,7 +550,7 @@ This confirmed that application-level connectivity had also been restored.
 
 ### Evidence
 
-![Final HTTP Test](screenshots/28-final-http-test-success.png)
+<img width="1919" height="1021" alt="28-final-http-test-success png" src="https://github.com/user-attachments/assets/ddb2a0d4-7853-42a5-bc26-65d0161869d5" />
 
 ---
 
@@ -576,7 +576,7 @@ The connection test was successful.
 
 ### Evidence
 
-![Network Watcher Success](screenshots/27-network-watcher-success.png)
+<img width="1914" height="909" alt="27-network-watcher-success png" src="https://github.com/user-attachments/assets/0fbd5c2f-87e0-4c13-bcb7-6b72a230fbba" />
 
 ---
 

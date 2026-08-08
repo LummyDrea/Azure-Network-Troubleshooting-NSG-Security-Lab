@@ -371,7 +371,18 @@ Least-Privilege Improvement
 Final Validation
 ```
 
-**Status: ✅ Completed**
+## Project Status
+
+**Status:** ✅ Completed
+
+---
+
+## Author
+
+**Ayodeji Olumide Awe**
+
+*IT Support & Cybersecurity Professional*
+
 
 **Project Focus:** Azure Networking | Cloud Troubleshooting | Network Security | Windows Server | IT Support | Cybersecurity
 

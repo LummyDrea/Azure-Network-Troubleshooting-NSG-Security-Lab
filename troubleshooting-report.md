@@ -1,4 +1,3 @@
-
 # Azure Network Troubleshooting & NSG Security Lab — Technical Troubleshooting Report
 
 ## 1. Incident Overview
@@ -96,9 +95,10 @@ The investigation followed a layered troubleshooting approach:
         Azure Network Watcher
 ```
 
-Architecture diagram:
+### Architecture Diagram
 
-<img width="1653" height="565" alt="Azure Network architecture" src="https://github.com/user-attachments/assets/346ef665-b92d-4251-8fab-0d29b95bb9c9" />
+![Azure Network Architecture](./architecture/azure-network-architecture.png)
+
 ---
 
 # 4. Network Addressing Plan
@@ -130,7 +130,9 @@ The actual private IP addresses assigned to the virtual machines were obtained f
 
 ---
 
-# 5. Resource Group Creation
+# 5. Infrastructure Deployment
+
+## 5.1 Resource Group Creation
 
 The Azure resources were organised within:
 
@@ -138,19 +140,16 @@ The Azure resources were organised within:
 rg-network-troubleshooting-lab
 ```
 
-The resource group was created in preparation for the networking and virtual machine resources used throughout the lab.
+The resource group was created to contain the networking, virtual machine and security resources used throughout the lab.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1912" height="910" alt="01-resource-group-created png" src="https://github.com/user-attachments/assets/98315513-9e69-4cb8-941f-31c6cc294975" />
 
-**Evidence:** `01-resource-group-created.png`
-
-This screenshot documents the successful creation of the project resource group.
+**Screenshot:** `01-resource-group-created.png`
 
 ---
 
-# 6. Virtual Network and Subnet Configuration
+## 5.2 Virtual Network and Subnet Configuration
 
 The following Virtual Network was created:
 
@@ -164,7 +163,7 @@ with the address space:
 10.10.0.0/16
 ```
 
-Two subnets were created.
+Two subnets were created:
 
 ### Web Subnet
 
@@ -182,35 +181,35 @@ Admin-Subnet
 
 The subnet separation was intentional to demonstrate basic network segmentation.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1916" height="910" alt="02-vnet-subnets-created png" src="https://github.com/user-attachments/assets/aacf5d05-ec0f-4004-a88f-787b15ffe2b0" />
 
-**Evidence:** `02-vnet-subnets-created.png`
+
+**Screenshot:** `02-vnet-subnets-created.png`
 
 ---
 
-# 7. VM Size Availability Check
+## 5.3 VM Size Availability Check
 
 Before deploying the virtual machines, available VM sizes were reviewed for the selected Azure region.
 
-The selected region for this project was:
+The selected region was:
 
 ```text
 West Central US
 ```
 
-This check was important because Azure VM SKU availability can vary by region and subscription.
+This check was important because VM SKU availability can vary by region and subscription.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1917" height="911" alt="03-available-vm-sizes-west-central-us png" src="https://github.com/user-attachments/assets/8205a42c-a5a3-4f38-bbbb-41c0929475ea" />
 
-**Evidence:** `03-available-vm-sizes-west-central-us.png`
+
+**Screenshot:** `03-available-vm-sizes-west-central-us.png`
 
 ---
 
-# 8. WEB-SERVER-01 Deployment
+# 6. WEB-SERVER-01 Deployment
 
 The first virtual machine was deployed as:
 
@@ -218,7 +217,7 @@ The first virtual machine was deployed as:
 WEB-SERVER-01
 ```
 
-The VM was configured with:
+Configuration:
 
 ```text
 Operating System:
@@ -234,53 +233,45 @@ Subnet:
 Web-Subnet
 ```
 
-The VM was configured with a Network Security Group:
+The VM was associated with:
 
 ```text
 nsg-web-server
 ```
 
-RDP access was enabled for administration and configuration of the lab server.
+RDP access was enabled for administration and configuration.
 
-### Screenshot Evidence — Final VM Configuration
+### Final VM Configuration
 
-<img width="1908" height="916" alt="04-web-server-final-configuration png" src="https://github.com/user-attachments/assets/b2ccc32b-4d46-4353-8b53-eca609fa4795" />
 
-**Evidence:** `04-web-server-final-configuration.png`
 
-### Screenshot Evidence — Deployment
+**Screenshot:** `04-web-server-final-configuration.png`
 
-<img width="1919" height="910" alt="05-web-server-deployment-success png" src="https://github.com/user-attachments/assets/7fe03a80-743b-40d3-bb6d-9d66973bd96c" />
+### Deployment Success
 
-**Evidence:** `05-web-server-deployment-success.png`
 
-### Screenshot Evidence — VM Overview
 
-<img width="1919" height="971" alt="06-web-server-overview png" src="https://github.com/user-attachments/assets/e277dce9-93e1-4c3d-a5d4-973e38a97cc3" />
+**Screenshot:** `05-web-server-deployment-success.png`
 
-**Evidence:** `06-web-server-overview.png`
+### VM Overview
+
+
+
+**Screenshot:** `06-web-server-overview.png`
 
 ---
 
-# 9. Connecting to WEB-SERVER-01
+# 7. WEB-SERVER-01 RDP and Network Configuration
 
 After deployment, Remote Desktop Protocol (RDP) was used to connect to the Windows Server.
 
-The successful RDP connection confirmed that the VM was accessible for administration.
+### Evidence
 
-### Screenshot Evidence
 
-<img width="1919" height="1012" alt="07-rdp-successful png" src="https://github.com/user-attachments/assets/371ee10b-ccdc-4e8c-a54e-3db3f72e08be" />
 
-**Evidence:** `07-rdp-successful.png`
+**Screenshot:** `07-rdp-successful.png`
 
----
-
-# 10. Verify WEB-SERVER-01 Network Configuration
-
-The server's network configuration was checked from inside Windows Server.
-
-The following PowerShell command can be used:
+The server's network configuration was then checked using PowerShell.
 
 ```powershell
 Get-NetIPConfiguration
@@ -292,7 +283,7 @@ or:
 ipconfig
 ```
 
-The purpose of this step was to identify:
+The purpose was to identify:
 
 * IPv4 address
 * Subnet information
@@ -300,63 +291,59 @@ The purpose of this step was to identify:
 * DNS configuration
 * Network adapter status
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="1019" alt="08-web-server-network-config png" src="https://github.com/user-attachments/assets/582b67b8-0262-4ad4-b083-dd91000991cb" />
 
-**Evidence:** `08-web-server-network-config.png`
+
+**Screenshot:** `08-web-server-network-config.png`
 
 ---
 
-# 11. IIS Installation
+# 8. IIS Installation and Local Validation
 
-IIS was installed on `WEB-SERVER-01` using PowerShell.
+## 8.1 IIS Installation
 
-Command:
+IIS was installed on `WEB-SERVER-01` using PowerShell:
 
 ```powershell
 Install-WindowsFeature -Name Web-Server -IncludeManagementTools
 ```
 
-After installation, the IIS role was verified:
+The Web Server role was then verified:
 
 ```powershell
 Get-WindowsFeature Web-Server
 ```
 
-The expected result was that the Web Server role was installed.
+### Evidence
 
-### Screenshot Evidence
 
-<img width="1919" height="1018" alt="09-iis-installed png" src="https://github.com/user-attachments/assets/c030bb81-a801-4a45-a70d-6fcaf5469f39" />
 
-**Evidence:** `09-iis-installed.png`
+**Screenshot:** `09-iis-installed.png`
 
 ---
 
-# 12. IIS Local Connectivity Test
+## 8.2 IIS Local Connectivity Test
 
-Before testing network connectivity from another VM, IIS was tested locally.
-
-The following URL was opened from the web server:
+Before testing connectivity from another VM, IIS was tested locally.
 
 ```text
 http://localhost
 ```
 
-A successful IIS response confirmed that the web application was functioning locally.
+A successful IIS response confirmed that the web service was functioning locally.
 
-This was an important troubleshooting baseline because it established that IIS itself was working before any network incident was introduced.
+This established an important troubleshooting baseline before the network fault was introduced.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1917" height="1021" alt="10-iis-local-test-success png" src="https://github.com/user-attachments/assets/9be77448-fc65-494b-89e7-cf4c452329eb" />
 
-**Evidence:** `10-iis-local-test-success.png`
+
+**Screenshot:** `10-iis-local-test-success.png`
 
 ---
 
-# 13. ADMIN-VM Deployment
+# 9. ADMIN-VM Deployment
 
 A second Windows Server virtual machine was deployed as:
 
@@ -379,39 +366,35 @@ Admin-Subnet
 
 The purpose of this VM was to simulate an administrator workstation from which connectivity to the internal web server could be tested.
 
-### Screenshot Evidence — Final Configuration
+### Final VM Configuration
 
-<img width="1913" height="907" alt="11-admin-vm-final-configuration png" src="https://github.com/user-attachments/assets/3b307496-7fff-4da3-b37f-e18699ff2f71" />
 
-**Evidence:** `11-admin-vm-final-configuration.png`
 
-### Screenshot Evidence — Deployment
+**Screenshot:** `11-admin-vm-final-configuration.png`
 
-<img width="1918" height="911" alt="12-admin-vm-deployment-success png" src="https://github.com/user-attachments/assets/fcad87fb-8041-4a0b-9e0a-1981b062aa4d" />
+### Deployment Success
 
-**Evidence:** `12-admin-vm-deployment-success.png`
 
-### Screenshot Evidence — VM Overview
 
-<img width="1919" height="970" alt="13-admin-vm-overview png" src="https://github.com/user-attachments/assets/c7893147-1568-4d98-ac65-4326107fc481" />
+**Screenshot:** `12-admin-vm-deployment-success.png`
 
-**Evidence:** `13-admin-vm-overview.png`
+### VM Overview
+
+
+
+**Screenshot:** `13-admin-vm-overview.png`
 
 ---
 
-# 14. Connecting to ADMIN-VM
+# 10. ADMIN-VM RDP and Network Configuration
 
 RDP was used to connect to the administration VM.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="1022" alt="14-admin-vm-rdp-successful png" src="https://github.com/user-attachments/assets/25bb018c-5e5c-4bec-bafb-0947765e21b6" />
 
-**Evidence:** `14-admin-vm-rdp-successful.png`
 
----
-
-# 15. Verify ADMIN-VM Network Configuration
+**Screenshot:** `14-admin-vm-rdp-successful.png`
 
 The administration VM network configuration was checked using:
 
@@ -425,42 +408,31 @@ or:
 ipconfig
 ```
 
-The private IP address was recorded for use during troubleshooting.
+The private IP address was recorded for use during connectivity testing.
 
-### Screenshot Evidence
-
-<img width="1919" height="1021" alt="15-admin-vm-network-configuration png" src="https://github.com/user-attachments/assets/6bb26df0-86ba-474b-b53d-94a1e2859507" />
+### Evidence
 
 
-**Evidence:** `15-admin-vm-network-configuration.png`
+
+**Screenshot:** `15-admin-vm-network-configuration.png`
 
 ---
 
-# 16. Baseline Connectivity Test
+# 11. Baseline Connectivity
 
 Before introducing the simulated fault, connectivity from `ADMIN-VM` to `WEB-SERVER-01` was tested.
 
 The private IP address of `WEB-SERVER-01` was used.
 
-Command:
-
 ```powershell
 Test-NetConnection <WEB-SERVER-PRIVATE-IP> -Port 80
 ```
 
-Example:
-
-```powershell
-Test-NetConnection 10.10.1.X -Port 80
-```
-
-The expected result was:
+Expected result:
 
 ```text
 TcpTestSucceeded : True
 ```
-
-This confirmed that TCP port `80` was reachable.
 
 An HTTP request was also tested:
 
@@ -468,46 +440,45 @@ An HTTP request was also tested:
 Invoke-WebRequest http://<WEB-SERVER-PRIVATE-IP>
 ```
 
-The successful response established a working baseline.
+The successful tests established the baseline state.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="1021" alt="16-initial-connectivity-success png" src="https://github.com/user-attachments/assets/70b54fa3-b5b2-4011-b236-a2f6d4ded9be" />
 
-**Evidence:** `16-initial-connectivity-success.png`
+
+**Screenshot:** `16-initial-connectivity-success.png`
 
 ---
 
-# 17. Configure Initial HTTP NSG Allow Rule
+# 12. Initial HTTP NSG Allow Rule
 
-An inbound NSG rule was configured on:
+An inbound HTTP rule was configured on:
 
 ```text
 nsg-web-server
 ```
 
-The initial testing rule was:
+Initial testing rule:
 
-| Setting          | Value                       |
-| ---------------- | --------------------------- |
-| Name             | `Allow-HTTP-Testing`        |
-| Priority         | `200`                       |
-| Source           | Appropriate internal source |
-| Protocol         | TCP                         |
-| Destination Port | `80`                        |
-| Action           | Allow                       |
+| Setting          | Value                |
+| ---------------- | -------------------- |
+| Name             | `Allow-HTTP-Testing` |
+| Priority         | `200`                |
+| Protocol         | TCP                  |
+| Destination Port | `80`                 |
+| Action           | Allow                |
 
-This rule permitted HTTP traffic to the IIS web server.
+The rule permitted HTTP traffic to the IIS web server.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1914" height="909" alt="17-http-allow-nsg-rule png" src="https://github.com/user-attachments/assets/72fe79a6-7bda-4427-932e-a8a00983b737" />
 
-**Evidence:** `17-http-allow-nsg-rule.png`
+
+**Screenshot:** `17-http-allow-nsg-rule.png`
 
 ---
 
-# 18. Verify IIS Service
+# 13. IIS Service Validation
 
 The IIS World Wide Web Publishing Service was checked using:
 
@@ -529,15 +500,15 @@ Get-Website
 
 The service was confirmed to be operational before introducing the network fault.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="1016" alt="18-iis-service-running png" src="https://github.com/user-attachments/assets/74cb1cdb-dfb8-42d7-a5d8-98a791427555" />
 
-**Evidence:** `18-iis-service-running.png`
+
+**Screenshot:** `18-iis-service-running.png`
 
 ---
 
-# 19. Simulate the Network Failure
+# 14. Simulated Network Incident
 
 A deliberate NSG misconfiguration was introduced to simulate a realistic network security incident.
 
@@ -566,19 +537,17 @@ Priority 200 → ALLOW
 
 Because lower numerical priority values are evaluated first, the deny rule took precedence.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1917" height="909" alt="19-nsg-http-deny-rule-created png" src="https://github.com/user-attachments/assets/debb0be6-13f4-4533-be40-6f193be52ac3" />
 
-**Evidence:** `19-nsg-http-deny-rule-created.png`
+
+**Screenshot:** `19-nsg-http-deny-rule-created.png`
 
 ---
 
-# 20. Reproduce the Connectivity Failure
+# 15. Reproduce the Connectivity Failure
 
-After introducing the deny rule, the same connectivity test was repeated from `ADMIN-VM`.
-
-Command:
+After introducing the deny rule, the same connectivity test was repeated from `ADMIN-VM`:
 
 ```powershell
 Test-NetConnection <WEB-SERVER-PRIVATE-IP> -Port 80
@@ -604,33 +573,33 @@ Invoke-WebRequest http://<WEB-SERVER-PRIVATE-IP>
 
 This reproduced the simulated incident.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1916" height="1017" alt="20-connectivity-failure png" src="https://github.com/user-attachments/assets/379026e3-0819-429a-a635-ccd6451d3cbc" />
 
-**Evidence:** `20-connectivity-failure.png`
+
+**Screenshot:** `20-connectivity-failure.png`
 
 ---
 
-# 21. Troubleshooting Investigation
+# 16. Troubleshooting Investigation
 
 The incident was investigated using a layered troubleshooting methodology.
 
-The objective was to determine whether the failure was caused by:
+The investigation considered:
 
 * VM availability
 * Network configuration
 * IIS service
-* Windows Firewall
+* Local connectivity
 * NSG rules
-* Routing
-* Azure networking
+* Effective security rules
+* Azure network diagnostics
 
-The investigation started at the server/application layer and moved outward toward the Azure network security layer.
+The investigation began at the server and application layers before moving toward Azure network security controls.
 
 ---
 
-# 22. Step 1 — Verify VM Availability
+## 16.1 Verify VM Availability
 
 The Azure portal was checked to confirm that:
 
@@ -638,7 +607,7 @@ The Azure portal was checked to confirm that:
 WEB-SERVER-01
 ```
 
-was still running and had no obvious VM-level health issue.
+was still running.
 
 ### Finding
 
@@ -648,19 +617,17 @@ The virtual machine remained operational.
 
 The issue was unlikely to be caused by the VM being stopped or unavailable.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1912" height="907" alt="21-web-server-health-check png" src="https://github.com/user-attachments/assets/4f7b27dc-69ad-4dd9-88c4-f513cd32d228" />
 
-**Evidence:** `21-web-server-health-check.png`
+
+**Screenshot:** `21-web-server-health-check.png`
 
 ---
 
-# 23. Step 2 — Verify IIS Service
+## 16.2 Verify IIS Service
 
-The IIS service was checked directly on `WEB-SERVER-01`.
-
-Command:
+The IIS service was checked directly on `WEB-SERVER-01`:
 
 ```powershell
 Get-Service W3SVC
@@ -676,13 +643,11 @@ IIS → Running
 
 ### Conclusion
 
-The web application was still operational.
-
-Therefore, the investigation moved toward network connectivity.
+The web application remained operational.
 
 ---
 
-# 24. Step 3 — Test Local TCP Connectivity
+## 16.3 Test Local TCP Connectivity
 
 A local test was performed from `WEB-SERVER-01`:
 
@@ -702,19 +667,17 @@ WEB-SERVER-01
 
 ### Conclusion
 
-The IIS service was listening locally on TCP port `80`.
+IIS was listening locally on TCP port `80`.
 
-This helped eliminate IIS as the primary cause of the remote connectivity failure.
+### Evidence
 
-### Screenshot Evidence
 
-<img width="1919" height="1016" alt="22-local-iis-connectivity-success png" src="https://github.com/user-attachments/assets/c3ab7e0e-1ccd-4355-b199-96b014ab5af5" />
 
-**Evidence:** `22-local-iis-connectivity-success.png`
+**Screenshot:** `22-local-iis-connectivity-success.png`
 
 ---
 
-# 25. Step 4 — Compare Local and Remote Connectivity
+## 16.4 Compare Local and Remote Connectivity
 
 The results were compared.
 
@@ -732,33 +695,17 @@ ADMIN-VM → WEB-SERVER-01:80
 FAILURE
 ```
 
-This was an important diagnostic finding.
+This indicated that the application was functioning locally while remote access was being blocked.
 
-The application was available locally, but remote access was being blocked.
-
-### Troubleshooting Direction
-
-The investigation therefore moved toward:
-
-```text
-Network Security
-      ↓
-NSG
-      ↓
-Effective Security Rules
-      ↓
-Azure Network Watcher
-```
+The investigation therefore moved toward network security controls.
 
 ---
 
-# 26. Step 5 — Analyse Network Security Group Rules
+## 16.5 Analyse NSG Rules
 
 The NSG associated with `WEB-SERVER-01` was reviewed.
 
-The following rules were identified:
-
-### Rule 1 — Deny
+### Deny Rule
 
 ```text
 Name:       Deny-HTTP-Troubleshooting
@@ -768,7 +715,7 @@ Port:       80
 Action:     Deny
 ```
 
-### Rule 2 — Allow
+### Allow Rule
 
 ```text
 Name:       Allow-HTTP-Testing
@@ -780,20 +727,18 @@ Action:     Allow
 
 The numerical priority was critical.
 
-Azure evaluates NSG rules based on priority, with lower numerical values taking precedence.
-
-Therefore:
+The lower numerical value has higher precedence:
 
 ```text
 100 → DENY
 200 → ALLOW
 ```
 
-The deny rule was being evaluated first.
+The deny rule therefore took precedence.
 
 ---
 
-# 27. Step 6 — Review Effective Security Rules
+## 16.6 Review Effective Security Rules
 
 The effective security rules applied to the network interface of `WEB-SERVER-01` were reviewed.
 
@@ -822,15 +767,15 @@ DENY
 
 The NSG was actively preventing the connection.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1915" height="909" alt="23-effective-security-rules-deny-http png" src="https://github.com/user-attachments/assets/1e8779b7-95ef-44f4-aeb5-0c7dad9877ce" />
 
-**Evidence:** `23-effective-security-rules-deny-http.png`
+
+**Screenshot:** `23-effective-security-rules-deny-http.png`
 
 ---
 
-# 28. Step 7 — Azure Network Watcher Investigation
+## 16.7 Azure Network Watcher Investigation
 
 Azure Network Watcher Connection Troubleshoot was used to independently test the network path.
 
@@ -860,15 +805,15 @@ Network Watcher provided Azure-side diagnostic evidence supporting the PowerShel
 
 The network path to TCP port `80` was blocked.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="910" alt="24-network-watcher-http-failure png" src="https://github.com/user-attachments/assets/86aa5b7b-5f6f-4c6d-a4ca-f41fc943daaa" />
 
-**Evidence:** `24-network-watcher-http-failure.png`
+
+**Screenshot:** `24-network-watcher-http-failure.png`
 
 ---
 
-# 29. Root Cause Analysis
+# 17. Root Cause Analysis
 
 ## Problem Statement
 
@@ -911,9 +856,7 @@ As a result, Azure blocked inbound HTTP traffic to the IIS server.
 
 ---
 
-# 30. Why IIS Was Not the Root Cause
-
-It was important not to immediately assume that the web service was broken.
+# 18. Why IIS Was Not the Root Cause
 
 The evidence showed:
 
@@ -945,7 +888,7 @@ This demonstrated that:
 
 ---
 
-# 31. Remediation
+# 19. Remediation
 
 The incorrect NSG deny rule was removed.
 
@@ -960,19 +903,17 @@ DENY
 
 The valid HTTP allow rule remained.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1917" height="908" alt="25-nsg-corrected png" src="https://github.com/user-attachments/assets/55e163c7-f1a2-4ebb-bd34-f7cc48620cef" />
 
-**Evidence:** `25-nsg-corrected.png`
+
+**Screenshot:** `25-nsg-corrected.png`
 
 ---
 
-# 32. Post-Remediation Connectivity Test
+# 20. Post-Remediation Connectivity Test
 
-After removing the deny rule, the connectivity test was repeated from `ADMIN-VM`.
-
-Command:
+After removing the deny rule, the connectivity test was repeated from `ADMIN-VM`:
 
 ```powershell
 Test-NetConnection <WEB-SERVER-PRIVATE-IP> -Port 80
@@ -988,19 +929,17 @@ TcpTestSucceeded : True
 
 TCP port `80` became reachable again.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1913" height="1013" alt="26-connectivity-restored png" src="https://github.com/user-attachments/assets/b550a45c-1fdf-4b9b-98e3-2161b02272c1" />
 
-**Evidence:** `26-connectivity-restored.png`
+
+**Screenshot:** `26-connectivity-restored.png`
 
 ---
 
-# 33. Post-Remediation Network Watcher Test
+# 21. Post-Remediation Network Watcher Test
 
 Azure Network Watcher Connection Troubleshoot was run again using the same source, destination, protocol and port.
-
-### Test
 
 ```text
 Source:
@@ -1020,19 +959,17 @@ Port:
 
 The connection test completed successfully.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1914" height="909" alt="27-network-watcher-success png" src="https://github.com/user-attachments/assets/8994415e-c85d-4153-b5ee-c33ab41cd064" />
 
-**Evidence:** `27-network-watcher-success.png`
+
+**Screenshot:** `27-network-watcher-success.png`
 
 ---
 
-# 34. Final HTTP Test
+# 22. Final HTTP Test
 
-A final HTTP request was performed from `ADMIN-VM`.
-
-Command:
+A final HTTP request was performed from `ADMIN-VM`:
 
 ```powershell
 Invoke-WebRequest http://<WEB-SERVER-PRIVATE-IP>
@@ -1040,17 +977,17 @@ Invoke-WebRequest http://<WEB-SERVER-PRIVATE-IP>
 
 The IIS server successfully returned an HTTP response.
 
-This confirmed that the application layer was reachable after the network remediation.
+This confirmed that the application layer was reachable after network remediation.
 
-### Screenshot Evidence
+### Evidence
 
-<img width="1919" height="1021" alt="28-final-http-test-success png" src="https://github.com/user-attachments/assets/19afd490-b714-497a-bed2-e1ba51efbdf6" />
 
-**Evidence:** `28-final-http-test-success.png`
+
+**Screenshot:** `28-final-http-test-success.png`
 
 ---
 
-# 35. Least-Privilege Security Improvement
+# 23. Least-Privilege Security Improvement
 
 Although removing the deny rule restored connectivity, the final configuration was reviewed from a security perspective.
 
@@ -1077,7 +1014,7 @@ Action:
 Allow
 ```
 
-This means that only systems within the administration subnet are permitted to access the web server over HTTP through this rule.
+This means that systems within the administration subnet are permitted to access the web server over HTTP through this rule.
 
 ### Security Principle
 
@@ -1085,7 +1022,7 @@ This implements the **principle of least privilege** by allowing only the networ
 
 ---
 
-# 36. Before vs After
+# 24. Before vs After
 
 | Area             | During Incident | After Remediation |
 | ---------------- | --------------- | ----------------- |
@@ -1100,7 +1037,7 @@ This implements the **principle of least privilege** by allowing only the networ
 
 ---
 
-# 37. Troubleshooting Methodology Used
+# 25. Troubleshooting Methodology Used
 
 The troubleshooting process followed a structured approach:
 
@@ -1138,42 +1075,42 @@ This approach prevented unnecessary changes to the server or application before 
 
 ---
 
-# 38. Complete Evidence Timeline
+# 26. Complete Evidence Timeline
 
 | Step | Screenshot                                  | Evidence                    |
-| ---- | ------------------------------------------- | --------------------------- |
-| 1    | `01-resource-group-created.png`             | Resource group              |
-| 2    | `02-vnet-subnets-created.png`               | VNet and subnets            |
-| 3    | `03-available-vm-sizes-west-central-us.png` | VM size availability        |
-| 4    | `04-web-server-final-configuration.png`     | Web VM configuration        |
-| 5    | `05-web-server-deployment-success.png`      | Web VM deployment           |
-| 6    | `06-web-server-overview.png`                | Web VM overview             |
-| 7    | `07-rdp-successful.png`                     | RDP access                  |
-| 8    | `08-web-server-network-config.png`          | Network configuration       |
-| 9    | `09-iis-installed.png`                      | IIS installation            |
-| 10   | `10-iis-local-test-success.png`             | Local IIS test              |
-| 11   | `11-admin-vm-final-configuration.png`       | Admin VM configuration      |
-| 12   | `12-admin-vm-deployment-success.png`        | Admin VM deployment         |
-| 13   | `13-admin-vm-overview.png`                  | Admin VM overview           |
-| 14   | `14-admin-vm-rdp-successful.png`            | Admin VM RDP                |
-| 15   | `15-admin-vm-network-configuration.png`     | Admin network configuration |
-| 16   | `16-initial-connectivity-success.png`       | Baseline connectivity       |
-| 17   | `17-http-allow-nsg-rule.png`                | HTTP allow rule             |
-| 18   | `18-iis-service-running.png`                | IIS service                 |
-| 19   | `19-nsg-http-deny-rule-created.png`         | Fault introduced            |
-| 20   | `20-connectivity-failure.png`               | Connectivity failure        |
-| 21   | `21-web-server-health-check.png`            | VM health                   |
-| 22   | `22-local-iis-connectivity-success.png`     | Local connectivity          |
-| 23   | `23-effective-security-rules-deny-http.png` | Effective NSG denial        |
-| 24   | `24-network-watcher-http-failure.png`       | Network Watcher failure     |
-| 25   | `25-nsg-corrected.png`                      | NSG remediation             |
-| 26   | `26-connectivity-restored.png`              | Connectivity restored       |
-| 27   | `27-network-watcher-success.png`            | Network Watcher success     |
-| 28   | `28-final-http-test-success.png`            | Final HTTP validation       |
+| ---: | ------------------------------------------- | --------------------------- |
+|    1 | `01-resource-group-created.png`             | Resource group              |
+|    2 | `02-vnet-subnets-created.png`               | VNet and subnets            |
+|    3 | `03-available-vm-sizes-west-central-us.png` | VM size availability        |
+|    4 | `04-web-server-final-configuration.png`     | Web VM configuration        |
+|    5 | `05-web-server-deployment-success.png`      | Web VM deployment           |
+|    6 | `06-web-server-overview.png`                | Web VM overview             |
+|    7 | `07-rdp-successful.png`                     | RDP access                  |
+|    8 | `08-web-server-network-config.png`          | Network configuration       |
+|    9 | `09-iis-installed.png`                      | IIS installation            |
+|   10 | `10-iis-local-test-success.png`             | Local IIS test              |
+|   11 | `11-admin-vm-final-configuration.png`       | Admin VM configuration      |
+|   12 | `12-admin-vm-deployment-success.png`        | Admin VM deployment         |
+|   13 | `13-admin-vm-overview.png`                  | Admin VM overview           |
+|   14 | `14-admin-vm-rdp-successful.png`            | Admin VM RDP                |
+|   15 | `15-admin-vm-network-configuration.png`     | Admin network configuration |
+|   16 | `16-initial-connectivity-success.png`       | Baseline connectivity       |
+|   17 | `17-http-allow-nsg-rule.png`                | HTTP allow rule             |
+|   18 | `18-iis-service-running.png`                | IIS service                 |
+|   19 | `19-nsg-http-deny-rule-created.png`         | Fault introduced            |
+|   20 | `20-connectivity-failure.png`               | Connectivity failure        |
+|   21 | `21-web-server-health-check.png`            | VM health                   |
+|   22 | `22-local-iis-connectivity-success.png`     | Local connectivity          |
+|   23 | `23-effective-security-rules-deny-http.png` | Effective NSG denial        |
+|   24 | `24-network-watcher-http-failure.png`       | Network Watcher failure     |
+|   25 | `25-nsg-corrected.png`                      | NSG remediation             |
+|   26 | `26-connectivity-restored.png`              | Connectivity restored       |
+|   27 | `27-network-watcher-success.png`            | Network Watcher success     |
+|   28 | `28-final-http-test-success.png`            | Final HTTP validation       |
 
 ---
 
-# 39. Key Technical Findings
+# 27. Key Technical Findings
 
 ### Finding 1 — The VM Was Healthy
 
@@ -1209,7 +1146,7 @@ HTTP access was restricted to the administration subnet.
 
 ---
 
-# 40. Security Lessons Learned
+# 28. Security Lessons Learned
 
 ## NSG Rule Priority
 
@@ -1279,9 +1216,7 @@ This provided clear evidence of cause and effect.
 
 ---
 
-# 41. Lessons Learned
-
-This project demonstrated several important practical concepts.
+# 29. Lessons Learned
 
 ### Azure Networking
 
@@ -1312,11 +1247,9 @@ This project demonstrated several important practical concepts.
 
 ---
 
-# 42. Final Incident Resolution
+# 30. Final Incident Resolution
 
-The incident was successfully resolved.
-
-### Initial State
+## Initial State
 
 ```text
 ADMIN-VM
@@ -1326,7 +1259,7 @@ ADMIN-VM
 WEB-SERVER-01
 ```
 
-### Root Cause
+## Root Cause
 
 ```text
 NSG
@@ -1336,7 +1269,7 @@ NSG
  +-- Priority 200 → ALLOW TCP 80
 ```
 
-### Remediated State
+## Remediated State
 
 ```text
 ADMIN-VM
@@ -1356,7 +1289,7 @@ The service was restored and successfully validated.
 
 ---
 
-# 43. Final Project Outcome
+# 31. Final Project Outcome
 
 The project successfully demonstrated a complete cloud network troubleshooting lifecycle:
 

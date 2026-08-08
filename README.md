@@ -184,13 +184,13 @@ For the complete technical investigation, see the detailed troubleshooting docum
 
 Detailed information about the Azure infrastructure, Windows Server configuration, IIS deployment, baseline testing, simulated incident, and troubleshooting process:
 
-➡️ **[View Azure Network Setup](./azure-network-setup.md)**
+- **[View Azure Network Setup](./azure-network-setup.md)**
 
 ### 🔎 Troubleshooting Report
 
 Detailed technical investigation covering the incident, root-cause analysis, remediation, least-privilege improvement, validation, and troubleshooting results:
 
-➡️ **[View Troubleshooting Report](./troubleshooting-report.md)**
+- **[View Troubleshooting Report](./troubleshooting-report.md)**
 
 ---
 

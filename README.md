@@ -238,7 +238,7 @@ Evidence includes:
 * Network Watcher success
 * Final HTTP test
 
-All screenshots are available in the [`screenshots/`](./screenshots/) directory.
+📸 **[View All Lab Screenshots](./Screenshots/)**
 
 ---
 

@@ -1,4 +1,4 @@
-# 🔎 Azure Network Troubleshooting Report
+# 🔎 Azure Network Troubleshooting Setup
 
 ## 🖥️ Web Server Configuration
 

@@ -63,31 +63,10 @@ The project demonstrates the complete troubleshooting lifecycle from **network c
 <img width="1536" height="1024" alt="Lab Architecture" src="https://github.com/user-attachments/assets/d183b07b-8c89-4c8a-b98a-cb4709166c7e" />
 
 
-### Network Architecture Diagram
+## Network Architecture Diagram
 
-                     MICROSOFT AZURE
-                            |
-              rg-network-troubleshooting-lab
-                            |
-             vnet-network-troubleshooting
-                     10.10.0.0/16
-                            |
-             +--------------+--------------+
-             |                             |
-       Web-Subnet                     Admin-Subnet
-       10.10.1.0/24                  10.10.2.0/24
-             |                             |
-             v                             v
-      WEB-SERVER-01                    ADMIN-VM
-      Windows Server                  Windows Server
-             |
-             v
-            IIS
-          TCP 80
 
-      nsg-web-server
-             |
-      NSG traffic filtering
+<img width="1536" height="1024" alt="768AC7CF-26D7-4AA8-B3BA-1697FC8EFBF5" src="https://github.com/user-attachments/assets/4b7f938e-dafc-4a3a-97b6-fc985725b790" />
 
 ---
 
